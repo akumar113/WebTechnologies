@@ -1,0 +1,937 @@
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/85807/font-awesome.css"
+    />
+    <!-- css style starts here -->
+    <style>
+      .clearfix {
+        display: inline-block;
+      }
+      .clearfix:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+      }
+
+      * html .clearfix {
+        height: 1%;
+      }
+
+      .clearfix {
+        display: block;
+      }
+
+      body {
+        padding: 30px 20px 20px 20px;
+        font-family: "Montserrat", sans-serif;
+        background-image: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          color-stop(0, #222),
+          color-stop(0.61, #ededed)
+        );
+        background-image: -o-linear-gradient(right bottom, #222 0%, #444 61%);
+        background-image: -moz-linear-gradient(right bottom, #222 0%, #444 61%);
+        background-image: -webkit-linear-gradient(
+          right bottom,
+          #222 0%,
+          #444 61%
+        );
+        background-image: -ms-linear-gradient(right bottom, #222 0%, #444 61%);
+        background-image: linear-gradient(
+          to right bottom,
+          #222222 0%,
+          #444444 61%
+        );
+      }
+
+      a {
+        text-decoration: none;
+        color: #0198e1;
+      }
+
+      .divider {
+        width: 100%;
+        float: left;
+      }
+      .divider:after {
+        position: absolute;
+        width: 100%;
+        margin-top: 0px;
+        bottom: -11px;
+        left: -3px;
+        background: #595959;
+        content: "";
+        display: block;
+        -moz-transform: skew(-31deg, 0deg);
+        -ms-transform: skew(-31deg, 0deg);
+        -webkit-transform: skew(-31deg, 0deg);
+        transform: skew(-31deg, 0deg);
+        height: 11px;
+      }
+
+      .contOut {
+        opacity: 0;
+        width: 100%;
+        max-width: 1080px;
+        margin: 0 auto;
+        background: #fff;
+        position: relative;
+        overflow: visible;
+        margin-bottom: 6px;
+      }
+      .contOut:before {
+        position: absolute;
+        width: 6px;
+        margin-top: 6px;
+        left: -6px;
+        background: #8c8c8c;
+        content: "";
+        display: block;
+        -moz-transform: skew(0deg, -61deg);
+        -ms-transform: skew(0deg, -61deg);
+        -webkit-transform: skew(0deg, -61deg);
+        transform: skew(0deg, -61deg);
+        height: 100%;
+      }
+      .contOut .contIn {
+        width: 100%;
+        float: left;
+      }
+      .contOut .contIn .section {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+      .contOut .contIn .section.top {
+        padding-top: 30px;
+        padding-bottom: 15px;
+      }
+      .contOut .contIn .section.top:hover img {
+        -webkit-filter: grayscale(0%);
+        filter: grayscale(0%);
+      }
+      .contOut .contIn .logoCont {
+        float: left;
+        width: 15%;
+      }
+      .contOut .contIn .logoCont .logo {
+        width: 100%;
+        max-width: 100px;
+        min-width: 50px;
+        height: auto;
+        min-height: 50px;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        border: solid 1px #cccccc;
+      }
+      .contOut .contIn h1 {
+        width: 45%;
+        float: left;
+        display: inline-block;
+        font-family: "Playfair Display", serif;
+        margin: -6px 0 0 0;
+        font-size: 40px;
+        line-height: 40px;
+      }
+      .contOut .contIn p.tagline {
+        float: left;
+        width: 45%;
+        font-size: 14px;
+      }
+      .contOut .contIn p.tagline span {
+        color: #999999;
+      }
+      .contOut .contIn .moreInfo {
+        float: right;
+        width: 40%;
+        text-align: right;
+      }
+      .contOut .contIn .moreInfo p {
+        margin: 0;
+        line-height: 20px;
+        word-wrap: break-word;
+      }
+
+      .middle {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .middle h2 {
+        border-left: solid 0 #fff;
+        -moz-transition: all 200ms ease-in;
+        -o-transition: all 200ms ease-in;
+        -webkit-transition: all 200ms ease-in;
+        transition: all 200ms ease-in;
+      }
+      .middle h2 i.fa {
+        display: inline-block;
+        margin-left: 10px;
+      }
+      .middle h2 i.fa:hover {
+        cursor: pointer;
+        color: #0176ae;
+      }
+      .middle:hover h2 {
+        border-left: solid 10px black;
+        padding-left: 8px;
+        -moz-transition: all 100ms ease-in;
+        -o-transition: all 100ms ease-in;
+        -webkit-transition: all 100ms ease-in;
+        transition: all 100ms ease-in;
+      }
+      .middle .job {
+        width: 100%;
+        float: left;
+      }
+      .middle .job h2 {
+        margin: 0;
+      }
+      .middle .job h2 span {
+        float: right;
+        display: inline-block;
+        font-size: 16px;
+        background: black;
+        color: #fff;
+        padding: 6px 8px;
+        min-width: 120px;
+        text-align: center;
+      }
+      .middle .job p {
+        margin: 6px 0;
+      }
+      .middle .job p .brag {
+        display: inline-block;
+        margin: 10px 0;
+        font-style: italic;
+        background: #dbdbdb;
+        padding: 20px 20px 20px 50px;
+        color: #333;
+        text-align: justify;
+        border-bottom: solid 1px #bfbfbf;
+        position: relative;
+        text-shadow: 0 1px 1px #fff;
+        max-height: 40px;
+      }
+      .middle .job p .brag:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 40px solid transparent;
+        border-bottom: 40px solid transparent;
+        border-left: 40px solid #fff;
+      }
+
+      .skills {
+        width: 49%;
+        display: block;
+        float: left;
+        padding-bottom: 20px;
+      }
+      .skills h3 {
+        margin: 20px 20px 10px 20px;
+        text-transform: uppercase;
+        position: relative;
+      }
+      .skills h3 .fa {
+        position: absolute;
+        top: -4px;
+        right: 0;
+        padding: 4px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+      }
+      .skills ul {
+        font-size: 14px;
+        list-style: none;
+        margin: 0;
+        padding: 0 20px;
+      }
+      .skills ul li {
+        float: left;
+        padding: 4px 6px;
+        margin: 0 4px 4px 0;
+      }
+      .skills ul li.light {
+        opacity: 0.6;
+      }
+      .skills.odd {
+        margin-right: 2%;
+      }
+      .skills.code {
+        background: #0198e1;
+      }
+      .skills.code .fa {
+        background: #30bbfe;
+        -moz-box-shadow: inset 0 1px 2px #003149;
+        -webkit-box-shadow: inset 0 1px 2px #003149;
+        box-shadow: inset 0 1px 2px #003149;
+      }
+      .skills.code li {
+        background: #016fa4;
+        text-shadow: 0 1px 1px #0198e1;
+      }
+      .skills.code li:hover {
+        background: #0183c3;
+      }
+      .skills.code li.prim {
+        text-shadow: none;
+        background: #004262;
+        color: #fff;
+        clear: left;
+      }
+      .skills.software {
+        background: #608341;
+      }
+      .skills.software .fa {
+        background: #86b060;
+        -moz-box-shadow: inset 0 1px 2px #151d0e;
+        -webkit-box-shadow: inset 0 1px 2px #151d0e;
+        box-shadow: inset 0 1px 2px #151d0e;
+      }
+      .skills.software li {
+        background: #425a2d;
+        text-shadow: 0 1px 1px #608341;
+      }
+      .skills.software li:hover {
+        background: #516f37;
+      }
+      .skills.software li.prim {
+        text-shadow: none;
+        background: #222e17;
+        color: #fff;
+        clear: left;
+      }
+
+      ul.buttons {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      ul.buttons li {
+        float: left;
+        text-align: center;
+        display: inline-block;
+        width: 32%;
+        margin-right: 1%;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        position: relative;
+        margin-bottom: 8px;
+      }
+      ul.buttons li a {
+        display: inline-block;
+        padding: 10px 0;
+        color: #fff;
+      }
+      ul.buttons li:last-child {
+        margin-right: 0;
+        background: #8b4513;
+        border-bottom: solid 3px #311807;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+        width: 33%;
+      }
+      ul.buttons li:last-child:hover {
+        background: #b85b19;
+        border-bottom: solid 3px #753a10;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        -webkit-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+      ul.buttons li:nth-child(1) {
+        background: #b5509c;
+        border-bottom: solid 3px #702f60;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+      }
+      ul.buttons li:nth-child(1):hover {
+        background: #c474b0;
+        border-bottom: solid 3px #a6468e;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        -webkit-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+      ul.buttons li:nth-child(2) {
+        background: #608341;
+        border-bottom: solid 3px #2e3f1f;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+      }
+      ul.buttons li:nth-child(2):hover {
+        background: #79a552;
+        border-bottom: solid 3px #547239;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        -webkit-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+      ul.buttons li:nth-child(3) {
+        background: #0198e1;
+        border-bottom: solid 3px #01537b;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+        margin-right: 0;
+        width: 33%;
+      }
+      ul.buttons li:nth-child(3):hover {
+        background: #17b3fe;
+        border-bottom: solid 3px #0187c8;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        -webkit-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+      ul.buttons li:nth-child(4) {
+        background: #ff6103;
+        border-bottom: solid 3px #9c3a00;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+      }
+      ul.buttons li:nth-child(4):hover {
+        background: #ff8136;
+        border-bottom: solid 3px #e95700;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        -webkit-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+      ul.buttons li:nth-child(5) {
+        background: #444;
+        border-bottom: solid 3px #111111;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+      }
+      ul.buttons li:nth-child(5):hover {
+        background: #5e5e5e;
+        border-bottom: solid 3px #373737;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        -webkit-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+
+      @media (max-width: 1010px) {
+        .contOut .contIn h1,
+        .contOut .contIn p.tagline {
+          width: 42%;
+          margin-left: 3%;
+        }
+
+        .skills.code,
+        .skills.software {
+          width: 100%;
+        }
+
+        .skills.code {
+          margin-bottom: 10px;
+        }
+
+        ul.buttons li {
+          width: 48%;
+          margin-bottom: 10px;
+        }
+        ul.buttons li:nth-child(3),
+        ul.buttons li:last-child {
+          width: 48%;
+        }
+
+        ul.buttons li:nth-child(even) {
+          float: right;
+          margin-right: 0;
+        }
+      }
+      @media (max-width: 850px) {
+        .middle .job p .brag {
+          padding-left: 70px;
+          max-height: 60px;
+        }
+        .middle .job p .brag:before {
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 50px solid #fff;
+        }
+
+        .contOut .contIn .logoCont {
+          width: 35%;
+        }
+        .contOut .contIn .logoCont .logo {
+          max-width: 200px;
+        }
+        .contOut .contIn h1 {
+          width: 62%;
+          float: right;
+          text-align: right;
+          margin-bottom: 10px;
+        }
+        .contOut .contIn .moreInfo {
+          width: 60%;
+        }
+        .contOut .contIn p.tagline {
+          clear: left;
+          width: 30%;
+          margin: 0;
+        }
+      }
+      .contracts {
+        width: 100%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 20px 30px;
+      }
+      .contracts h3 {
+        margin: 0 0 20px 0;
+      }
+      .contracts .contract {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        width: 24%;
+        min-height: 160px;
+        background: #ffc;
+        border: solid 1px #ffff99;
+        -moz-box-shadow: 0 1px 2px #999;
+        -webkit-box-shadow: 0 1px 2px #999;
+        box-shadow: 0 1px 2px #999;
+        color: #333300;
+        float: left;
+        margin-right: 1%;
+        margin-bottom: 10px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+      .contracts .contract h4 {
+        margin: 0;
+      }
+      .contracts .contract p.desc {
+        font-size: 14px;
+        color: #4d4d00;
+        word-wrap: break-word;
+      }
+      .contracts .contract p.desc a:hover {
+        text-decoration: underline;
+      }
+      .contracts .contract span.date {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        font-size: 12px;
+        color: #999900;
+      }
+
+      @media (max-width: 800px) {
+        .contracts .contract {
+          width: 49%;
+        }
+      }
+      @media (max-width: 620px) {
+        .middle .job p .brag {
+          padding-left: 80px;
+          max-height: 80px;
+        }
+        .middle .job p .brag:before {
+          border-top: 60px solid transparent;
+          border-bottom: 60px solid transparent;
+          border-left: 60px solid #fff;
+        }
+      }
+      @media (max-width: 570px) {
+        .middle .job p .brag {
+          padding-left: 90px;
+          max-height: 100px;
+        }
+        .middle .job p .brag:before {
+          border-top: 70px solid transparent;
+          border-bottom: 70px solid transparent;
+          border-left: 70px solid #fff;
+        }
+
+        ul.buttons li {
+          width: 100%;
+          margin-right: 0;
+        }
+        ul.buttons li:nth-child(3),
+        ul.buttons li:last-child {
+          width: 100%;
+        }
+
+        .skills ul li {
+          float: none;
+        }
+
+        .contOut .contIn h1 {
+          font-size: 34px;
+        }
+
+        .contracts .contract {
+          width: 100%;
+          margin-right: 0;
+        }
+      }
+      @media (max-width: 500px) {
+        .middle .job p .brag {
+          padding-left: 20px;
+          max-height: none;
+        }
+        .middle .job p .brag:before {
+          border-top: none;
+          border-bottom: none;
+          border-left: none;
+        }
+
+        .middle .job h2 span {
+          margin-top: 10px;
+        }
+
+        .contOut .contIn h1 {
+          font-size: 28px;
+        }
+        .contOut .contIn .moreInfo {
+          font-size: 14px;
+        }
+      }
+      @media (max-width: 450px) {
+        .contOut .contIn .moreInfo,
+        .contOut .contIn p.tagline {
+          font-size: 12px;
+        }
+      }
+      .sm {
+        list-style: none;
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        margin: 0;
+      }
+      .sm li {
+        display: inline-block;
+        float: left;
+        margin-left: 6px;
+      }
+      .sm li a {
+        color: #ccc;
+      }
+      .sm li a:hover {
+        color: #fff;
+      }
+    </style>
+    <!-- css style ends here -->
+  </head>
+  <div class="contOut clearfix">
+    <div class="contIn">
+      <div class="section top clearfix">
+        <div class="logoCont">
+          <img
+            class="logo"
+            src="https://2018hw86807.s3.amazonaws.com/picture.jpg"
+          />
+        </div>
+        <h1>Aman Kumar</h1>
+        <div class="moreInfo">
+          <p>
+            141-C kamna Vaishali<br />Sec 5 Ghaziabad<br />aman.kumarsxc@gmail.com<br />
+             +91 9999571033<br /><a href="http://onelittledesigner.com" target="_blank"
+              ></a
+            >
+          </p>
+        </div>
+        <p class="tagline">
+          Cloud Engineer<br />Windows Admin<br /><span
+            >Vmware Admin</span
+          >
+        </p>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="contOut clearfix">
+    <div class="contIn">
+      <div class="section middle clearfix">
+        <div class="job">
+          <h2>
+            Carrer Profile<i class="fa fa-minus openBtn open"></i
+            ><span>Aug 2018 - present </span>
+          </h2>
+          <p>
+            <strong>Position: </strong>Cloud Engineer<br /><strong
+              >Description: </strong
+            >I am supporting as a cloud engineer on AWS and Azure.
+            <br /><span class="brag"
+              >I work for build team from last 3 years, worked on multiple platform 
+              started with VMware and now working on AWS Azure and VMC. Support migration activity
+              on vmware.</span
+            >
+          </p>	
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="contOut clearfix">
+    <div class="contIn">
+      <div class="section middle clearfix">
+        <div class="job">
+          <h2>
+            Experiance Summary<i class="fa fa-plus openBtn"></i
+            ><span>2018 - present </span>
+          </h2>
+          <p>
+            <strong>Position: </strong>Cloud Enigneer and wintel Support<br /><strong
+              >Description: </strong
+            >Windows support, server build, powershell scripting and Ansible playbook
+            <br /><span class="brag"
+              ><ul>
+                <li>Working knowledge of AWS Services IaaS, PaaS, and SaaS and coming trends in the Cloud space</li>
+               <li>Serving as a hands-on subject matter expert for DevOps and Automation in an Azure/AWS infrastructure environment
+               </li>
+               <li>Strong foundation of knowledge around Azure and/or AWS cloud services and the cloud ecosystem</li>
+               <li>Create and implement automation for cloud platforms as well as monitoring and alerting purposes</li>
+               <li>Expertise in installing configuring and troubleshooting on Windows NT/Windows 2012, 2016 and 2019 servers using enterprise standards</li>
+               <li>Experience with cluster connfiguration on windows.</li>
+               <li>Migrated servers from Onprem datacenter to aws cloud.</li>      
+              </span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="contOut clearfix">
+    <div class="contIn">
+      <div class="section middle clearfix">
+        <div class="job">
+          <h2>
+            Skills<i class="fa fa-plus openBtn"></i
+            ><span>2018 - 2020 </span>
+          </h2>
+          <p>
+            <strong>Position: </strong>System Administrator<br /><strong
+              >Description: </strong
+            >Windows Admin,SQL Clustering,windows and azure AD and Ansible   
+             <br /><span class="brag"
+              ><ul><li>Excellent verbal, interpersonal, and written communication skills</li>
+<li>Team player with the ability to work in a fast-paced environment</li>
+<li>Strong analytical, problem-solving and decision making capabilities</li>
+<li>This person will have to have experience migrating current and new applications from an on prem environment to an AWS environment within the OS</li>
+<li>Terraform</li>
+<li>Ansible</li>
+<li>Chef</li>
+<li>Creating and uploading AWS AMIs</li>
+<li>Cloud Computing</li>
+<li>Teams - Development Team, Systems Engineer Team, etc</li></ul>
+              </span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="contOut clearfix">
+    <div class="contIn">
+      <div class="section middle clearfix">
+        <div class="job">
+          <h2>
+            Acadmic summary<i class="fa fa-plus openBtn"></i
+            ><span>2013 - 2018 </span>
+          </h2>
+          <p>
+              <span class="brag"
+              >Bachelor of Computer Application | Ambedkar University, Delhi</br>     
+               High school | Police Mordern School, Ghaziabad</br> 
+              </span>
+          </p>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="contOut clearfix half">
+    <div class="contIn">
+      <div class="section middle clearfix">
+        <div class="skills code odd">
+          <h3>Code & Software<i class="fa fa-code"></i></h3>
+          <ul>
+            <li class="prim">JavaScript</li>
+            <li>jQuery</li>
+            <li>jQuery UI</li>
+            <li>Angular</li>
+            <li>AJAX</li>
+            <li class="prim">CSS</li>
+            <li>CSS3</li>
+            <li>Sass</li>
+            <li>Scss</li>
+            <li>Compass</li>
+            <li class="light">Bourbon</li>
+            <li class="prim">HTML</li>
+            <li>HMTL5</li>
+            <li>xhtml</li>
+            <li>Jade</li>
+            <li class="light">Haml</li>
+            <li class="light">SVG</li>
+            <li class="prim">Database</li>
+            <li class="light">Ruby</li>
+            <li>Ruby on Rails</li>
+            <li>ASP</li>
+            <li>PHP</li>
+            <li class="light">PostgreSQL</li>
+            <li class="light">MySQL</li>
+            <li class="prim">Platforms</li>
+            <li>RapidWeaver</li>
+            <li>Wix</li>
+            <li>WordPress</li>
+            <li>Ghost</li>
+            <li class="light">Tumblr</li>
+            <li class="light">Joomla</li>
+            <li class="prim">API</li>
+            <li>Google Maps</li>
+            <li>Google Places</li>
+            <li>Facebook</li>
+            <li>Pinterest</li>
+            <li>Instagram</li>
+            <li class="light">PayPal</li>
+            <li class="prim">Frameworks</li>
+            <li>Bootstrap</li>
+            <li>Foundation</li>
+            <li>Pure</li>
+            <li class="prim">Editors</li>
+            <li>Aptana</li>
+            <li>Brackets</li>
+            <li>Sublime Text</li>
+            <li>Codepen</li>
+            <li>jsFiddle</li>
+            <li>Plist Editor Pro</li>
+            <li class="prim">Environments</li>
+            <li>Git</li>
+            <li>BitBucket</li>
+            <li>GitHub</li>
+            <li>WAMP/MAMP</li>
+            <li class="prim">Graphics</li>
+            <li>Photoshop</li>
+            <li>Illustrator</li>
+            <li class="light">After Effects</li>
+          </ul>
+        </div>
+        <div class="skills software">
+          <h3>Practices & Tools<i class="fa fa-laptop"></i></h3>
+          <ul>
+            <li class="prim">Markup</li>
+            <li>Semantic/intuitive</li>
+            <li>Unintrusive</li>
+            <li>Uniform Indention</li>
+            <li>Sparingly Complex</li>
+            <li>Browser Compliance</li>
+            <li>Validated</li>
+            <li>SEO Compliant</li>
+            <li class="prim">Design</li>
+            <li>Responsive</li>
+            <li>Single Page Apps</li>
+            <li>MVC Frameworks</li>
+            <li>UI & UX</li>
+            <li>Branding</li>
+            <li>A/B Testing</li>
+            <li>Pixel Perfect</li>
+            <li>Cross-browser</li>
+            <li>Touch Friendly</li>
+            <li>Retina Ready</li>
+            <li>Fast</li>
+            <li class="prim">Dev Approach</li>
+            <li>Plan</li>
+            <li>Modular Builds</li>
+            <li>Version Control</li>
+            <li>Test</li>
+            <li>Debug</li>
+            <li class="prim">Troubleshooting</li>
+            <li>StackOverflow</li>
+            <li>Chrome Dev Tools</li>
+            <li class="prim">Project Management</li>
+            <li>Asana</li>
+            <li>Jira</li>
+            <li>Hipchat</li>
+            <li>Basecamp</li>
+            <li>Slack</li>
+            <li class="prim">Site Optimization</li>
+            <li>Google Analytics</li>
+            <li>Webmaster/Console Tools</li>
+            <li>Website Insight</li>
+            <li>PageSpeed</li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <!-- jquery starts here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    $(window).load(function () {
+      // Page Load Anim
+      $(".contOut").animate(
+        {
+          opacity: "1",
+        },
+        1200
+      );
+      // Jobs Accordion
+      $(".fa-plus").closest(".job").find("p").slideUp();
+      $(".openBtn").on("click", function () {
+        if ($(this).hasClass("open")) {
+          $(this)
+            .removeClass("open")
+            .removeClass("fa-minus")
+            .addClass("fa-plus");
+          $(this)
+            .closest(".job")
+            .find("p")
+            .animate(
+              {
+                opacity: "0",
+              },
+              200
+            )
+            .slideUp();
+        } else {
+          $(this).addClass("open").removeClass("fa-plus").addClass("fa-minus");
+          $(this).closest(".job").find("p").slideDown().animate(
+            {
+              opacity: "1",
+            },
+            400
+          );
+        }
+      });
+    });
+  </script>
+  <!-- jquery ends here -->
+</html>
